@@ -15,7 +15,7 @@ export default function Login() {
   return (
     <Container maxWidth="xs" sx={{ mt: 10 }}>
       <Paper elevation={3} sx={{ p: 4 }}>
-        <Typography variant="h5" mb={2}>Employee Login</Typography>
+        <Typography variant="h5" mb={2}>Admin Login</Typography>
         <TextField fullWidth label="Username" margin="normal" />
         <TextField fullWidth label="Password" type="password" margin="normal" />
         <Button fullWidth variant="contained" onClick={handleLogin}>

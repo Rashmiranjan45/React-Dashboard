@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { v4 as uuid } from "uuid";
 import {
   Dialog,
   DialogTitle,
@@ -103,7 +104,7 @@ const EmployeeForm = ({ open, onClose, onSave, editData }) => {
     if (!validate()) return;
     onSave({
       ...form,
-      id: editData ? editData.id : Date.now(),
+      id: editData ? editData.id : uuid(),
     });
 
 

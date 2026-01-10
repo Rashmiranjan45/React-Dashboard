@@ -28,10 +28,6 @@ const Dashboard = () => {
   });
 
 
-  useEffect(() => {
-    localStorage.setItem("employees", JSON.stringify(employees));
-  }, [employees]);
-
 
   const handleSave = (data) => {
     if (editData) {
@@ -54,7 +50,9 @@ const Dashboard = () => {
     setOpenForm(true);
   };
 
-
+  useEffect(() => {
+    localStorage.setItem("employees", JSON.stringify(employees));
+  }, [employees]);
 
   return (
     <>
