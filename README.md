@@ -1,5 +1,3 @@
-# React + Vite
-
 # Employee Management Dashboard
 
 ## Project Overview
