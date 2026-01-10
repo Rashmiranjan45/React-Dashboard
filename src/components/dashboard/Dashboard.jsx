@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { v4 as uuid } from "uuid";
 import { Container, Button, TextField, Stack, Select, MenuItem, FormControl, InputLabel } from "@mui/material";
 import Header from "../shared/Header";
 import DashboardSummary from "./DashboardSummary"
@@ -8,7 +9,10 @@ import ConfirmDialog from "../shared/ConfirmDialog";
 import { columns } from "../employee/column.jsx";
 
 const Dashboard = () => {
-  const [employees, setEmployees] = useState([]);
+  const [employees, setEmployees] = useState(() => {
+    return JSON.parse(localStorage.getItem("employees") || "[]");
+  });
+
   const [openForm, setOpenForm] = useState(false);
   const [deleteId, setDeleteId] = useState(null);
   const [search, setSearch] = useState("");
@@ -24,11 +28,16 @@ const Dashboard = () => {
   });
 
 
+  useEffect(() => {
+    localStorage.setItem("employees", JSON.stringify(employees));
+  }, [employees]);
+
+
   const handleSave = (data) => {
     if (editData) {
       setEmployees(prev => prev.map((emp) => emp.id === editData.id ? { ...emp, ...data } : emp));
     } else {
-      setEmployees(prev => [...prev, { ...data, id: Date.now() }]);
+      setEmployees(prev => [...prev, { ...data, id: uuid() }]);
     }
     setOpenForm(false);
     setEditData(null);
@@ -44,6 +53,7 @@ const Dashboard = () => {
     setEditData(employee);
     setOpenForm(true);
   };
+
 
 
   return (

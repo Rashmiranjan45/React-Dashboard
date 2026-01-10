@@ -61,7 +61,6 @@ const EmployeeForm = ({ open, onClose, onSave, editData }) => {
   const [form, setForm] = useState(initialState);
   const [errors, setErrors] = useState({});
   const [preview, setPreview] = useState("");
-  const [isEdit, setIsEdit] = useState(false);
 
   /* Populate form in EDIT mode */
   useEffect(() => {
@@ -102,7 +101,6 @@ const EmployeeForm = ({ open, onClose, onSave, editData }) => {
 
   const handleSubmit = () => {
     if (!validate()) return;
-    setIsEdit(true)
     onSave({
       ...form,
       id: editData ? editData.id : Date.now(),
